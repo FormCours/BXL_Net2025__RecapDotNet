@@ -4,6 +4,7 @@
     {
         private string _name;
         private int _nbLap;
+        private int _currentLap;
         private Track _track;
         private List<Participant> _participants;
 
@@ -14,6 +15,7 @@
             _nbLap = nbLap;
             _track = track;
             _participants = new List<Participant>();
+            CurrentLap = 0;
         }
 
         public string Name
@@ -65,17 +67,38 @@
 
         }
 
+        public int CurrentLap
+        {
+            get
+            {
+
+                return _currentLap;
+            }
+
+           private set
+            {
+                _currentLap = value;
+            }
+        }
+
         public void DoALap()
         {
             if (_participants.Count == 0)
             {
-                throw new Exception("Il faut au moins participant");
+                throw new Exception("Il faut au moins un participant");
+            }
+
+            if (CurrentLap > _nbLap)
+            {
+                throw new Exception("Nombre de tours maximum atteint");
             }
 
             foreach (Participant participant in _participants)
             {
                 participant.TakeLap(_track);
+                
             }
+            _currentLap++;
 
         }
 
@@ -83,7 +106,11 @@
         {
             if (_participants.Count == 0)
             {
-                throw new Exception("Il faut au moins participant");
+                throw new Exception("Il faut au moins un participant");
+            }
+
+            if(_currentLap<_nbLap) {
+                throw new Exception("La course n'est pas terminée");
             }
 
             Participant winner = _participants[0];
@@ -99,12 +126,13 @@
             return winner;
         }
 
+        
+
 
         public void AddParticipant(Car car, string identifiant)
         {
             if (_participants.Exists((p) => p.Identifiant == identifiant))
             {
-
                 throw new Exception("id existe deja");
             }
 

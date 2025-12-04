@@ -69,9 +69,15 @@ namespace Rappel_CourseVoiture.Models
         
         }
 
-        internal int GetTotalTime()
+        public double GetTotalTime()
         {
-            throw new NotImplementedException();
+            double total = 0;
+            foreach (double time in _lapTimes)
+            {
+                total += time;
+                
+            }
+             return Math.Round(total,2);
         }
     }
 }
