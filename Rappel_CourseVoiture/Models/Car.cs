@@ -66,5 +66,14 @@
                 _vitMax = value;
             }
         }
+
+        public double GetSpeed() 
+        {
+            double rng = Random.Shared.NextDouble();
+            double range = VitMax - VitMin;
+            double speed = (rng * range)+VitMin;
+
+            return Math.Round(speed,2);
+        }
     }
 }
