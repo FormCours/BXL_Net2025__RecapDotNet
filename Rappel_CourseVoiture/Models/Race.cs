@@ -81,7 +81,7 @@
             }
         }
 
-        public void DoALap()
+        public List<ParticipantStats> DoALap()
         {
             if (_participants.Count == 0)
             {
@@ -92,13 +92,17 @@
             {
                 throw new Exception("Nombre de tours maximum atteint");
             }
+            
+            List<ParticipantStats> racerstat = new List<ParticipantStats>();
 
             foreach (Participant participant in _participants)
             {
-                participant.TakeLap(_track);
-                
+                double timeLap = participant.TakeLap(_track);
+                racerstat.Add(new ParticipantStats(participant, timeLap));
             }
             _currentLap++;
+
+            return racerstat;
 
         }
 

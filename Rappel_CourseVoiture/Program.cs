@@ -26,12 +26,11 @@ grandPrixDigit.AddParticipant(new Car("911Turbo", "Porsche", 115.00, 330.00), "R
 grandPrixDigit.AddParticipant(new Car("Up", "VW", 112.00, 325.00), "Slimane");
 
 
-while (grandPrixDigit.CurrentLap <= grandPrixDigit.NbLap) { 
-
-    grandPrixDigit.DoALap();
-    
+while (grandPrixDigit.CurrentLap <= grandPrixDigit.NbLap)
+{
+    List<ParticipantStats> racerstats = grandPrixDigit.DoALap();
 }
-    Participant winner = grandPrixDigit.GetWinner();
+Participant winner = grandPrixDigit.GetWinner();
 
-    Console.WriteLine($"Le gagnant est : {winner.Identifiant}");
+Console.WriteLine($"Le gagnant est : {winner.Identifiant}");
 
