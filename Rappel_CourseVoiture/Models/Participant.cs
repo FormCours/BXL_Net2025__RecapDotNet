@@ -1,4 +1,5 @@
-﻿namespace Rappel_CourseVoiture.Models
+﻿
+namespace Rappel_CourseVoiture.Models
 {
     public class Participant
     {
@@ -52,6 +53,25 @@
                 _lapTimes = value;
             }
         }
-  
+
+        public double TakeLap(Track track) {
+
+            double distance = track.Length;
+            double speed = Car.GetSpeed();
+            double lapTime = (distance / speed) * 60 * 60;
+
+            _lapTimes.Add(lapTime);
+
+            return lapTime;
+
+
+        
+        
+        }
+
+        internal int GetTotalTime()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
